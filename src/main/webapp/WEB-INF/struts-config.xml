@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+"http://jakarta.apache.org/struts/dtds/struts-config_1_3.dtd">
+
+<struts-config>
+	<form-beans>
+		<form-bean name="user" type="entities.User" />
+		<form-bean name="userdto" type="model.UserDTO"/>
+	</form-beans>
+	<action-mappings>
+		<action path="/home" type="controller.UserAction"
+		 parameter="getListUsers">
+			<forward name="getUserList" path="/home.jsp"/>
+		</action>
+		<action path="/add-user" type="controller.UserAction"
+		parameter="addForm" name="userdto">
+			<forward name="addUserForm" path="/addUser.jsp"/>
+		</action>
+		<action path="/pro-add-user" type="controller.UserAction"
+		parameter="addUser" name="userdto">
+			<forward name="addUser" path="/addUser.jsp"/>
+		</action>
+	</action-mappings>
+</struts-config>
