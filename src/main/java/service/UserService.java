@@ -33,8 +33,17 @@ public class UserService {
 			return -1;
 		}
 	}
-
-	public static void main(String[] args) throws SQLException, Exception {
-		System.out.print(new UserService().addUser(new User("heh", 22)));
+	
+	public boolean checkLogin(User user) {
+		try {
+			return userRepository.checkLogin(user);
+		} catch (Exception e) {
+			return false;
+		}
 	}
+
+	/*
+	 * public static void main(String[] args) throws SQLException, Exception {
+	 * System.out.print(new UserService().addUser(new User("heh", 22))); }
+	 */
 }

@@ -15,18 +15,41 @@
 </head>
 <body>
 <div class="container">
-	<html:link action="/home.html">Return to home page</html:link>
+	<%
+	String email = (String)session.getAttribute("email");
+	if (email == null) {
+		response.sendRedirect("/struts1-demo/login.html"); 
+	}
+	else {
+		out.print("Hello " + email); 
+	}
+	%>
+	
+	<button class="btn btn-primary" onclick="document.location='/struts1-demo/home.html'">Return to home page</button>
 	<html:form action="/pro-add-user.html" method="post">
 		<br>
-	<logic:present name="message">
-		<bean:write name="message" />
-	</logic:present>
-	<br>
-		<label>Name</label>
-		<html:text property="name" name="userdto"></html:text>
-		<label>Age</label>
-		<html:text property="age" name="userdto"></html:text>
-		<html:submit>Add user</html:submit>
+		<logic:present name="message">
+			<bean:write name="message" />
+		</logic:present>
+		<br>
+		<div class="form-group">
+    		<label for="name">Name:</label>
+    		<input type="text" name="name" class="form-control">
+ 	 	</div>
+  		<div class="form-group">
+    		<label for="age">Age:</label>
+   			<input type="text" name="age" class="form-control">
+  		</div>
+  		<div class="form-group">
+    		<label for="email">Email:</label>
+   			<input type="text" name="email" class="form-control">
+  		</div>
+  		<div class="form-group">
+    		<label for="password">Password:</label>
+   			<input type="password" name="password" class="form-control">
+  		</div>
+		<%-- <html:submit>Add user</html:submit> --%>
+		<button type="submit" class="btn btn-primary">Add user</button>
 	</html:form>
 </div>
 </body>

@@ -11,15 +11,30 @@
 	<action-mappings>
 		<action path="/home" type="controller.UserAction"
 		 parameter="getListUsers">
-			<forward name="getUserList" path="/home.jsp"/>
+		 	<forward name="getUserList" path="/home.jsp"/>
 		</action>
+		
+		<action path="/login" type="controller.UserAction"
+		parameter="getLoginPage">
+			<forward name="loginPage" path="/login.jsp"/>
+		</action>
+		
+		<action path="/process-login" type="controller.UserAction"
+		parameter="login">
+		</action>
+		
+		<action path="/logout" type="controller.UserAction"
+		parameter="logout">
+			<forward name="logout" path="/login.jsp"/>
+		</action>
+		
 		<action path="/add-user" type="controller.UserAction"
 		parameter="addForm" name="userdto">
 			<forward name="addUserForm" path="/addUser.jsp"/>
 		</action>
+		
 		<action path="/pro-add-user" type="controller.UserAction"
 		parameter="addUser" name="userdto">
-			<forward name="addUser" path="/addUser.jsp"/>
 		</action>
 	</action-mappings>
 </struts-config>

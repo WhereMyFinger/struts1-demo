@@ -15,16 +15,30 @@
 </head>
 <body>
 <div class="container">
-	<html:link action="/add-user.html">Add user</html:link>
+	
+	<%
+	String email = (String)session.getAttribute("email");
+	if (email == null) {
+		response.sendRedirect("/struts1-demo/login.html"); 
+	}
+	else {
+		out.print("Hello " + email); 
+	}
+	%>
+	
+	<h1><html:link action="/logout">Logout</html:link></h1>
+	<button class="btn btn-primary" onclick="document.location='/struts1-demo/add-user.html'">Add user</button>
 	<table class="table" border="1" cellpadding="2" cellspacing="2">
 		<tr>
 			<div class="col-span-2">
 				<th >User name</th>
 			</div>	
 			<div class="col-span-2">
-				<th >age</th>
+				<th >Age</th>
 			</div>
-			<!-- <th>Birthday</th> -->
+			<div class="col-span-2">
+				<th >Email</th>
+			</div>
 		</tr>
 		<logic:iterate name="userList" id="user">
 			<tr>
@@ -33,6 +47,9 @@
 				</div>
 				<div class="col-span-2">
 					<td><bean:write name="user" property="age" format="####"/></td>
+				</div>
+				<div class="col-span-2">
+					<td><bean:write name="user" property="email"/></td>
 				</div>
 				<%-- <td>
 					<html:link action="/edit-product.html" paramName="listId" paramId="idProd" paramProperty="id">Edit</html:link> | <html:link action="/delete-product.html" paramName="listId" paramId="idProd" paramProperty="id" onclick="return confirm('Are you sure?')">Delete</html:link> 
