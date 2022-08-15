@@ -18,11 +18,8 @@
 	
 	<%
 	String email = (String)session.getAttribute("email");
-	if (email == null) {
-		response.sendRedirect("/struts1-demo/login.html"); 
-	}
-	else {
-		out.print("Hello " + email); 
+	if (email != null) {
+		out.print("Hello " + email);
 	}
 	%>
 	

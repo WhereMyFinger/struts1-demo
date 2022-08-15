@@ -17,14 +17,12 @@
 <div class="container">
 	<%
 	String email = (String)session.getAttribute("email");
-	if (email == null) {
-		response.sendRedirect("/struts1-demo/login.html"); 
-	}
-	else {
-		out.print("Hello " + email); 
+	if (email != null) {
+		out.print("Hello " + email);
 	}
 	%>
 	
+	<br>
 	<button class="btn btn-primary" onclick="document.location='/struts1-demo/home.html'">Return to home page</button>
 	<html:form action="/pro-add-user.html" method="post">
 		<br>
