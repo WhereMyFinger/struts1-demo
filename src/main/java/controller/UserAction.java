@@ -19,12 +19,11 @@ public class UserAction extends MappingDispatchAction{
 	public ActionForward getListUsers(ActionMapping mapping, ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		
-		/*
-		 * HttpSession session = request.getSession(); if (session == null) {
-		 * response.sendRedirect("/struts1-demo/login.html"); } else {
-		 * 
-		 * }
-		 */
+		HttpSession session = request.getSession();
+		if (session.getAttribute("email") == null) {
+			response.sendRedirect("/struts1-demo/login.html"); 
+		}
+		 
 		UserService userService = new UserService();
 		List<User> list = userService.getListUsers();
 		request.setAttribute("userList", list);
@@ -71,6 +70,11 @@ public class UserAction extends MappingDispatchAction{
 	
 	public ActionForward addForm(ActionMapping mapping, ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
+		
+		HttpSession session = request.getSession();
+		if (session.getAttribute("email") == null) {
+			response.sendRedirect("/struts1-demo/login.html"); 
+		}
 		
 		return mapping.findForward("addUserForm");		
 	}
